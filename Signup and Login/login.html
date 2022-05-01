@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <<link rel="stylesheet" type="" href="style.css"> -->
+    <!-- <link href="style.css" rel="stylesheet" "> -->
+    <style>
+        #head {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+        
+        #container {
+            font-family: 'Roboto', sans-serif;
+            border-radius: 15px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            padding: 30px;
+            margin: auto;
+            width: 350px;
+            /* border: 2px solid red; */
+        }
+        
+        input {
+            border-radius: 8px;
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid rgb(180, 174, 174);
+        }
+        
+        #sign {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            font-size: large;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="head">
+        <img src="https://www.masaischool.com/img/navbar/logo.svg" alt="">
+    </div>
+    <form id="container">
+        <div id="sign">Login</div>
+
+        <div class="mb-3 row ">
+            <label for="staticEmail " class="col-sm-2 col-form-label ">Email</label>
+            <div class="col-sm-10 ">
+                <input type="text " placeholder="Enter Email" id="staticEmail">
+            </div>
+        </div>
+        <div class="mb-3 row ">
+            <label for="inputPassword " class="col-sm-2 col-form-label ">Password</label>
+            <div class="col-sm-10 ">
+                <input type="text" placeholder="Enter Password" id="inputPassword">
+            </div>
+        </div>
+        <div class="mb-3 row ">
+            <label for="inputPassword " class="col-sm-2 col-form-label "></label>
+            <div class="col-sm-10 ">
+                <input type="submit" value="Login" />
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
+<script>
+    var form = document.querySelector("form");
+    var userData = JSON.parse(localStorage.getItem("arrvalue"))
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        var data = {
+                email: form.staticEmail.value,
+                password: form.inputPassword.value
+            }
+            // console.log(data.email)
+            // console.log(userData[0].staticEmail)
+        if (userData === null) {
+            alert("please create an account ")
+                // window.location.href = "index.html "
+        } else if (userData.staticEmail == data.email && userData.inputPassword == data.password) {
+            alert("successfull")
+            localStorage.setItem("login", JSON.stringify(userData))
+            window.location.href = "index.html "
+        } else {
+            alert("user dose not exist ")
+        }
+    })
+</script>
